@@ -15,14 +15,11 @@ alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gac='git add -A && git commit -m'
 alias ge='git-edit-new'
 
-# Mine
+# Delete all local branches which have been merged upstream
 function gclean {
   git remote prune origin
-  if git rev-parse --verify --quiet main; then
-    git branch --merged main | grep -v "\* main" | xargs -n 1 git branch -d
-  elif git rev-parse --verify --quiet master; then
-    git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
-  fi
+  defaultbranch=$(gdefaultbranch)
+  git branch --merged $defaultbranch | grep -v "$defaultbranch" | xargs -n 1 git branch -d
 }
 
 # git add everything and commit it with 'wip' msg
@@ -45,4 +42,13 @@ function gr {
 
 function gitzip() { 
 	git archive -o $@.zip HEAD
+}
+
+function gdefaultbranch() {
+  tl=$(/usr/bin/git rev-parse --show-toplevel)
+  if [[ -f "${tl}/.git/refs/heads/main" ]]; then
+    echo "main"
+  else
+    echo "master"
+  fi
 }

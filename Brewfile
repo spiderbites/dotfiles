@@ -24,6 +24,7 @@ brew 'wget'
 brew 'yt-dlp/taps/yt-dlp'
 
 cask '1password'
+cast 'appcleaner'
 cask 'dash'
 cask 'firefox'
 cask 'fork'

@@ -12,6 +12,7 @@ brew 'fd' # alternative to find
 brew 'git-standup'
 brew 'jq'
 brew 'parquet-tools'
+brew 'shellcheck'
 brew 'wifi-password'
 brew 'wget'
 

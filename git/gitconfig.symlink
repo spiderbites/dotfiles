@@ -1,13 +1,14 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
+	path = /Users/zz/.config/dev/gitconfig
 [alias]
         co = checkout
         br = branch
         ci = commit
         st = status
         cob = checkout -b
-        pf = push --force-with-lease
+        pf = push --force-with-lease --force-if-includes
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
         count   = !git shortlog -sn
@@ -19,7 +20,6 @@
 [core]
         excludesfile = ~/.gitignore
         editor = code --wait
-	commitGraph = true
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -29,11 +29,8 @@
 [help]
         autocorrect = 1
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
 	default = current
+        autoSetupRemote = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -43,17 +40,3 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[diff]
-	algorithm = patience
-[gc]
-	writeCommitGraph = true
-[protocol]
-	version = 2
-[url "https://github.com/Shopify/"]
-	insteadOf = git@github.com:Shopify/
-	insteadOf = git@github.com:shopify/
-	insteadOf = ssh://git@github.com/Shopify/
-	insteadOf = ssh://git@github.com/shopify/
-[credential]
-	helper = 
-	helper = store --file /opt/dev/var/private/git_credential_store

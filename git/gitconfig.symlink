@@ -33,12 +33,10 @@
         #
         # Setting to git 2.0 default to suppress warning message
 	default = current
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
 [init]
 	defaultBranch = main
 [pull]
 	rebase = false
+[user]
+	name = Josh Zucker
+	email = zuckerje@gmail.com

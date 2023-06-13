@@ -9,7 +9,6 @@ brew 'elixir'
 brew 'git-lfs'
 brew 'go'
 brew 'gh'
-brew 'grc' # colorize logfiles and commands
 brew 'imagemagick'
 brew 'fd' # alternative to find
 brew 'git-standup'

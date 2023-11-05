@@ -14,7 +14,7 @@ defaults write -g ApplePressAndHoldEnabled -boolean false
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Show the ~/Library folder.
-xattr -d com.apple.FinderInfo ~/Library
+chflags nohidden ~/Library
 
 # Set a really fast key repeat.
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
@@ -24,9 +24,26 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
+# Show finder pathbar
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+
+# Default to finder list view
+defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
+
+# Don't fuss about changing file extensions
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
+
+# Show extensions
+defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
+
 # Show macOS app switcher across all monitors
 defaults write com.apple.Dock appswitcher-all-displays -bool true
 
 # Smaller dock icons
 defaults write com.apple.dock "tilesize" -int "36"
+
+# Dock autohide
 defaults write com.apple.dock "autohide" -bool "true"
+
+# Dock active apps only
+defaults write com.apple.dock "static-only" -bool "true"

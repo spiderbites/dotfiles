@@ -14,6 +14,7 @@ brew 'parquet-cli'
 brew 'shellcheck'
 brew 'wifi-password'
 brew 'wget'
+brew 'yt-dlp'
 
 cask '1password'
 cask 'firefox'

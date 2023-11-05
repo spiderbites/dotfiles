@@ -17,6 +17,7 @@ defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 xattr -d com.apple.FinderInfo ~/Library
 
 # Set a really fast key repeat.
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Set the Finder prefs for showing a few different volumes on the Desktop.

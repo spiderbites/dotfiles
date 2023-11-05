@@ -16,7 +16,7 @@ brew 'wifi-password'
 brew 'wget'
 brew 'yt-dlp'
 
-cask '1password'
+# cask '1password' - this keeps failing with 1pass 8
 cask 'firefox'
 cask 'iterm2'
 cask 'postman'

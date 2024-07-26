@@ -63,3 +63,11 @@ if [ -e /Users/zz/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/zz/.nix-pro
 zstyle ':completion:*' use-cache on
 autoload -Uz compinit && compinit
 source <(spin completion)
+
+# cloudplatform: add Shopify clusters to your local kubernetes config
+export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/zz/.kube/config:/Users/zz/.kube/config.shopify.cloudplatform
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+for file in /Users/zz/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done

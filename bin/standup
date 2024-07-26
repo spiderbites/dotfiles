@@ -1,0 +1,9 @@
+#!/bin/bash
+
+yesterday=$(date -v -1d +'%Y-%m-%d')
+
+# Fetch merged PRs and convert to Markdown links
+gh search prs --author @me --merged --merged-at "$yesterday" --json title,url | jq -r '.[] | ":pr-merged: [\(.title)](\(.url))"'
+
+# Fetch opened PRs and convert to Markdown links
+gh search prs --author @me --state=open --created "$yesterday" --json title,url | jq -r '.[] | ":pr-open: [\(.title)](\(.url))"'

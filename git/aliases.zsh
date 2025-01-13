@@ -51,3 +51,9 @@ function gdefaultbranch() {
     echo "master"
   fi
 }
+
+# Reset current branch to match origin/branch
+function greset() {
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  git reset --hard origin/$current_branch
+}

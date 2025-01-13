@@ -3,6 +3,8 @@ export CLICOLOR=true
 
 fpath=($ZSH/functions $fpath)
 
+ln -s ~/src/github.com/Shopify/is-it-shipped/is_it_shipped ~/.dotfiles/functions/is_it_shipped
+
 autoload -U $ZSH/functions/*(:t)
 
 HISTFILE=~/.zsh_history

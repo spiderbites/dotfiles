@@ -16,11 +16,9 @@ alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gac='git add -A && git commit -m'
 alias ge='git-edit-new'
 
-# Delete all local branches which have been merged upstream
+# Delete all local branches which don't have a remote branch i.e. have been merged upstream
 function gclean {
-  git remote prune origin
-  defaultbranch=$(gdefaultbranch)
-  git branch --merged $defaultbranch | grep -v "$defaultbranch" | xargs -n 1 git branch -d
+  git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -D
 }
 
 # git add everything and commit it with 'wip' msg

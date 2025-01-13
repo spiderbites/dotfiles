@@ -1,9 +1,25 @@
 #!/bin/bash
 
-yesterday=$(date -v -1d +'%Y-%m-%d')
+# check for a cmd line arg `date`
+if [ "$1" == "--date" ]; then
+    # if it exists, use it
+    target_date=$2
+else
+    # Get today's day of the week (1 for Monday, 2 for Tuesday, ..., 7 for Sunday)
+    day_of_week=$(date +%u)
+
+    # Determine the date to use based on the day of the week
+    if [ "$day_of_week" -eq 1 ]; then
+        # Today is Monday, get the previous Friday
+        target_date=$(date -v -3d +'%Y-%m-%d')
+    else
+        # Today is not Monday, just yesterday's date
+        target_date=$(date -v -1d +'%Y-%m-%d')
+    fi
+fi
 
 # Fetch merged PRs and convert to Markdown links
-gh search prs --author @me --merged --merged-at "$yesterday" --json title,url | jq -r '.[] | ":pr-merged: [\(.title)](\(.url))"'
+gh search prs --author @me --merged --merged-at "$target_date" --json title,url | jq -r '.[] | ":pr-merged: [\(.title)](\(.url))"'
 
 # Fetch opened PRs and convert to Markdown links
-gh search prs --author @me --state=open --created "$yesterday" --json title,url | jq -r '.[] | ":pr-open: [\(.title)](\(.url))"'
+gh search prs --author @me --state=open --created "$target_date" --json title,url | jq -r '.[] | ":pr-open: [\(.title)](\(.url))"'

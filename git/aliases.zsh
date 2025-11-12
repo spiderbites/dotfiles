@@ -16,9 +16,34 @@ alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gac='git add -A && git commit -m'
 alias ge='git-edit-new'
 
-# Delete all local branches which don't have a remote branch i.e. have been merged upstream
-function gclean {
-  git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -D
+# Delete all local branches that have been merged into the default branch
+function gcleanmerged {
+  default_branch=$(gdefaultbranch)
+  git branch --merged $default_branch | grep -v "\* $default_branch" | xargs -n 1 git branch -d
+}
+
+# Interactive branch cleanup - shows branches and lets you pick which to delete
+function gcleani {
+  git branch --sort=-committerdate | grep -v "^\*" | fzf --multi --preview="git log --oneline --graph --date=short --pretty=\"format:%C(auto)%cd %h%d %s\" {}" | xargs git branch -D
+}
+
+# List branches older than N days (outputs branch names only for piping)
+function glistold {
+  days=${1:-30}
+  git for-each-ref --format='%(refname:short) %(committerdate:short)' refs/heads | \
+    while read branch date; do
+      if [[ $(date -j -f "%Y-%m-%d" "$date" +%s) -lt $(date -j -v-${days}d +%s) ]]; then
+        echo "$branch"
+      fi
+    done
+}
+
+# Delete branches older than N days (default 30)
+function gcleanold {
+  days=${1:-30}
+  git for-each-ref --format='%(refname:short) %(committerdate)' refs/heads | \
+    awk -v days=$days '$2 <= "'$(date -d "$days days ago" +%Y-%m-%d)'"' | \
+    awk '{print $1}' | grep -v "^$(git rev-parse --abbrev-ref HEAD)$" | xargs git branch -D
 }
 
 # git add everything and commit it with 'wip' msg

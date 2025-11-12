@@ -49,6 +49,24 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+
+# cloudplatform: add Shopify clusters to your local kubernetes config
+export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/zz/.kube/config:/Users/zz/.kube/config.shopify.cloudplatform
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+for file in /Users/zz/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
+
+# pnpm
+export PNPM_HOME="/Users/zz/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
 # Shopify dev
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
 if [ -e /Users/zz/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/zz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
@@ -58,16 +76,15 @@ if [ -e /Users/zz/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/zz/.nix-pro
 [[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
 
 
-# Spin autocomplete
+# add dev to front of path
+export PATH="/Users/zz/.dev/userprofile/bin:$PATH"
 
-zstyle ':completion:*' use-cache on
-autoload -Uz compinit && compinit
-source <(spin completion)
+# Added by tec agent
+[[ -x /Users/zz/.local/state/tec/profiles/base/current/global/init ]] && eval "$(/Users/zz/.local/state/tec/profiles/base/current/global/init zsh)"
 
-# cloudplatform: add Shopify clusters to your local kubernetes config
-export KUBECONFIG=${KUBECONFIG:+$KUBECONFIG:}/Users/zz/.kube/config:/Users/zz/.kube/config.shopify.cloudplatform
+# bun completions
+[ -s "/Users/zz/.bun/_bun" ] && source "/Users/zz/.bun/_bun"
 
-export WASMTIME_HOME="$HOME/.wasmtime"
-
-export PATH="$WASMTIME_HOME/bin:$PATH"
-for file in /Users/zz/src/github.com/Shopify/cloudplatform/workflow-utils/*.bash; do source ${file}; done
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

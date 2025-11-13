@@ -1,6 +1,12 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
+[alias]
+        co = checkout
+        br = branch
+        ci = commit
+        st = status
+        cob = checkout -b
 [color]
         diff = auto
         status = auto
@@ -30,3 +36,8 @@
 [user]
 	name = Josh Zucker
 	email = zuckerje@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

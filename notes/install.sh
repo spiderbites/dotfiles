@@ -1,0 +1,1 @@
+git clone git@github.com:spiderbites/notes.git ~/notes

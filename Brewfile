@@ -4,6 +4,7 @@ brew 'awscli'
 brew 'git-lfs'
 brew 'gh'
 brew 'jq'
+brew 'mise'
 brew 'wget'
 brew 'yt-dlp'
 

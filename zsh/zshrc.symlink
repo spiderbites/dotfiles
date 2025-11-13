@@ -77,3 +77,6 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
+
+# use mise for version managing tools
+eval "$(mise activate zsh)"

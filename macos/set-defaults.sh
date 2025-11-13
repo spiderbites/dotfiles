@@ -1,6 +1,4 @@
-## try re-writing with nix/flakes
-# https://github.com/nix-darwin/nix-darwin?tab=readme-ov-file#contributing
-# https://dreamsofcode.io/blog/nix-darwin-my-favorite-package-manager-for-macos
+# come back and check all these
 
 # # Sets reasonable macOS defaults.
 # #
@@ -26,13 +24,6 @@
 # # Set the Finder prefs for showing a few different volumes on the Desktop.
 # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 # defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-
-# # Set up Safari for development.
-# defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-# defaults write com.apple.Safari IncludeDevelopMenu -bool true
-# defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-# defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
-# defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # # Show macOS app switcher across all monitors
 # defaults write com.apple.Dock appswitcher-all-displays -bool true

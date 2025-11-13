@@ -1,13 +1,11 @@
 cask_args appdir: '/Applications'
 
-tap 'homebrew/bundle'
-
 brew 'awscli'
 brew 'git-lfs'
 brew 'gh'
 brew 'jq'
 brew 'wget'
-brew 'yt-dlp/taps/yt-dlp'
+brew 'yt-dlp'
 
 cask '1password'
 cask 'appcleaner'

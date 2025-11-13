@@ -1,7 +1,0 @@
-#!/bin/bash
-#
-# fix-audio
-#
-# Kill the CoreAudio process. It will restart automatically after a couple seconds.
-
-kill -9 `ps ax|grep 'coreaudio[a-z]' | awk '{print $1}'`

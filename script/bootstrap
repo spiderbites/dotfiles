@@ -108,9 +108,19 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 4 -name '*.symlink' -not -path '*.git*')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
+    # compute path relative to DOTFILES_ROOT
+    rel_path="${src#$DOTFILES_ROOT/}"
+    # remove the first path component (the repo subdir) so nested layout is preserved
+    rel_no_top="${rel_path#*/}"
+    # remove the .symlink extension
+    rel_no_ext="${rel_no_top%.*}"
+    dst="$HOME/$rel_no_ext"
+
+    # ensure parent directory exists so nested links can be created
+    mkdir -p "$(dirname "$dst")"
+
     link_file "$src" "$dst"
   done
 }

@@ -10,6 +10,8 @@ brew 'yt-dlp'
 
 cask '1password'
 cask 'appcleaner'
+cask 'claude-code'
+cask 'cursor'
 cask 'firefox'
 cask 'ghostty'
 cask 'obsidian'

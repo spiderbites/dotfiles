@@ -5,6 +5,7 @@ brew 'git-lfs'
 brew 'gh'
 brew 'jq'
 brew 'mise'
+brew 'pure'
 brew 'wget'
 brew 'yt-dlp'
 

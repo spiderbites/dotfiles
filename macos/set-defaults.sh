@@ -19,3 +19,6 @@ defaults write com.apple.Dock appswitcher-all-displays -bool true
 
 # Save screenshots to clipboard
 defaults write com.apple.screencapture target clipboard
+
+# Always open everything in Finder's list view
+defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
